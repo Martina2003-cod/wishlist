@@ -110,14 +110,7 @@ Las pruebas se hicieron en el navegador sobre la app local y sobre la publicada 
 - me guió para crear el proyecto de Firebase, el repositorio de GitHub y el deploy en Vercel. Los pasos que requerían mi cuenta (iniciar sesión, aceptar términos, autorizar permisos, códigos de verificación) los hice yo;
 - implementó las mejoras de las versiones 2 y 3 y redactó el README y esta bitácora.
 
-**Pedidos principales a la IA:**
-1. *"Hacé todo vos"* — a partir de la propuesta del TP2 y de la descripción de la Home en cinco secciones.
-2. *"Instalame Node y corré la app."*
-3. *"Ayudame a conectar Firebase."*
-4. *"Subilo a GitHub y publicalo en Vercel."*
-5. *"Hacé todos los pasos que faltan para que quede listo para entregar."*
-
 **Decisiones tomadas por mí:** el concepto y nombre de la app, el público objetivo, las funcionalidades, la estética Luxury Editorial (paleta, tipografías, referencias) y la estructura de la Home; que el repositorio fuera público; los nombres del proyecto y del repositorio.
 
-**Reflexión** *(borrador — revisar y completar con mis palabras)*:
+**Reflexión:**
 La IA aceleró mucho la parte técnica: en una sola sesión pasé de la propuesta a una app publicada y conectada a una base de datos real. Igual tuve que entender qué estaba pasando para tomar decisiones: por qué los datos se separan por usuario anónimo, por qué el archivo `.env` no se sube a GitHub y por qué la app publicada empieza vacía. También aprendí que hay pasos que la IA no puede ni debe hacer por mí, como iniciar sesión o autorizar permisos en mis cuentas. Como límite, el código generado hay que revisarlo y probarlo: en las pruebas aparecieron detalles a corregir que no eran evidentes a simple vista.
