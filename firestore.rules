@@ -1,0 +1,27 @@
+rules_version = '2';
+
+// Cada usuario (anónimo) sólo puede leer y escribir su propia wishlist.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/items/{itemId} {
+      function isOwner() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isValidItem() {
+        let d = request.resource.data;
+        return d.name is string && d.name.size() > 0 && d.name.size() <= 120
+          && d.brand is string && d.brand.size() > 0 && d.brand.size() <= 80
+          && d.price is number && d.price > 0
+          && d.category in ['Ropa', 'Abrigos', 'Calzado', 'Carteras', 'Accesorios', 'Belleza']
+          && d.priority in ['alta', 'media', 'baja']
+          && d.status in ['pending', 'purchased']
+          && d.imageUrl is string && d.imageUrl.size() <= 2000
+          && d.link is string && d.link.size() <= 2000;
+      }
+
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner() && isValidItem();
+    }
+  }
+}
