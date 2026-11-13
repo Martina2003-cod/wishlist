@@ -12,7 +12,9 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  Timestamp,
   updateDoc,
+  writeBatch,
 } from 'firebase/firestore';
 import { db, isFirebaseConfigured } from '../firebase';
 import { SEED_ITEMS } from './seed';
@@ -126,6 +128,33 @@ async function patchItem(uid, id, patch) {
     return;
   }
   await updateDoc(doc(db, 'users', uid, 'items', id), patch);
+}
+
+/** Carga las prendas de ejemplo en la wishlist del usuario (útil para una primera visita). */
+export async function seedSampleItems(uid) {
+  const now = Date.now();
+  const offset = (item) => now - (SEED_ITEMS.length - SEED_ITEMS.indexOf(item)) * 60_000;
+  if (!isFirebaseConfigured) {
+    await delay();
+    const fresh = SEED_ITEMS.map((it) => ({
+      ...it,
+      id: crypto.randomUUID(),
+      createdAt: offset(it),
+      purchasedAt: it.purchasedAt ? now : null,
+    }));
+    setLocal([...fresh, ...getLocal()]);
+    return;
+  }
+  const batch = writeBatch(db);
+  SEED_ITEMS.forEach((it) => {
+    const { id, createdAt, purchasedAt, ...data } = it;
+    batch.set(doc(itemsCol(uid)), {
+      ...data,
+      createdAt: Timestamp.fromMillis(offset(it)),
+      purchasedAt: purchasedAt ? Timestamp.fromMillis(now) : null,
+    });
+  });
+  await batch.commit();
 }
 
 export async function deleteItem(uid, id) {

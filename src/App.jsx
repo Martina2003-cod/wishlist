@@ -15,7 +15,7 @@ import { PRIORITY_RANK } from './lib/constants.js';
 const INITIAL_FILTERS = { tab: 'all', category: 'all', priority: 'all', query: '', sort: 'recent' };
 
 export default function App() {
-  const { items, loading, error, mode, addItem, editItem, removeItem, setStatus } = useWishlist();
+  const { items, loading, error, mode, addItem, editItem, removeItem, setStatus, loadSamples } = useWishlist();
   const { toasts, push, dismiss } = useToasts();
 
   const [filters, setFilters] = useState(INITIAL_FILTERS);
@@ -114,6 +114,20 @@ export default function App() {
     }
   }
 
+  const [seeding, setSeeding] = useState(false);
+  async function handleLoadSamples() {
+    setSeeding(true);
+    try {
+      await loadSamples();
+      push('Cargamos 6 prendas de ejemplo en tu wishlist.');
+    } catch (err) {
+      console.error(err);
+      push('No pudimos cargar los ejemplos.', 'error');
+    } finally {
+      setSeeding(false);
+    }
+  }
+
   async function handleDelete() {
     if (!toDelete) return;
     setDeleting(true);
@@ -152,6 +166,8 @@ export default function App() {
           onEdit={openEdit}
           onToggleStatus={handleToggleStatus}
           onAdd={openAdd}
+          onLoadSamples={handleLoadSamples}
+          seeding={seeding}
         />
       </main>
 

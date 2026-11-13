@@ -6,7 +6,11 @@ export default function Summary({ stats, loading }) {
   const cells = [
     { label: 'Guardados', value: pad(stats.total), note: 'piezas en tu archivo' },
     { label: 'Pendientes', value: pad(stats.pending), note: 'esperando su momento' },
-    { label: 'Comprados', value: pad(stats.purchased), note: `${progress}% de tu lista cumplida` },
+    {
+      label: 'Comprados',
+      value: pad(stats.purchased),
+      note: `${formatPrice(stats.purchasedValue)} invertidos · ${progress}% cumplido`,
+    },
     { label: 'Total pendiente', value: formatPrice(stats.pendingValue), note: 'presupuesto por planificar', wide: true },
   ];
 

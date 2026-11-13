@@ -3,6 +3,7 @@ import { ensureUser, isFirebaseConfigured } from '../firebase';
 import {
   createItem,
   deleteItem,
+  seedSampleItems,
   setItemStatus,
   subscribeItems,
   updateItem,
@@ -71,5 +72,6 @@ export function useWishlist() {
     editItem: (id, values) => updateItem(requireUid(), id, values),
     removeItem: (id) => deleteItem(requireUid(), id),
     setStatus: (id, status) => setItemStatus(requireUid(), id, status),
+    loadSamples: () => seedSampleItems(requireUid()),
   };
 }

@@ -23,6 +23,8 @@ export default function Collection({
   onEdit,
   onToggleStatus,
   onAdd,
+  onLoadSamples,
+  seeding,
 }) {
   const set = (key) => (e) => setFilters((f) => ({ ...f, [key]: e.target ? e.target.value : e }));
   const hasExtraFilters =
@@ -125,7 +127,15 @@ export default function Collection({
           ))}
         </div>
       ) : items.length === 0 ? (
-        <EmptyState allCount={allCount} tab={filters.tab} onAdd={onAdd} onReset={resetFilters} filtered={hasExtraFilters} />
+        <EmptyState
+          allCount={allCount}
+          tab={filters.tab}
+          onAdd={onAdd}
+          onReset={resetFilters}
+          filtered={hasExtraFilters}
+          onLoadSamples={onLoadSamples}
+          seeding={seeding}
+        />
       ) : (
         <ul className="grid">
           {items.map((item) => (
@@ -146,13 +156,19 @@ export default function Collection({
   );
 }
 
-function EmptyState({ allCount, tab, onAdd, onReset, filtered }) {
+function EmptyState({ allCount, tab, onAdd, onReset, filtered, onLoadSamples, seeding }) {
   if (allCount === 0) {
     return (
       <div className="empty">
         <p className="empty-title">Tu archivo está en blanco.</p>
         <p>Empezá guardando esa prenda que no te podés sacar de la cabeza.</p>
-        <button type="button" className="btn btn-dark" onClick={onAdd}>+ Add your first item</button>
+        <div className="empty-actions">
+          <button type="button" className="btn btn-dark" onClick={onAdd}>+ Add your first item</button>
+          <button type="button" className="btn btn-outline" onClick={onLoadSamples} disabled={seeding}>
+            {seeding ? <span className="spinner" aria-hidden="true" /> : null}
+            {seeding ? 'Cargando…' : 'Cargar prendas de ejemplo'}
+          </button>
+        </div>
       </div>
     );
   }
