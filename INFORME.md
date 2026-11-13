@@ -83,22 +83,19 @@ users/{uid}/items/{itemId}
 
 ## 4. Herramientas de IA utilizadas
 
-- **Claude (Anthropic), mediante Claude Code**, en la aplicación de escritorio. Lo usé para:
-  - generar el proyecto React + Vite, los componentes y los estilos a partir de mi propuesta escrita;
-  - escribir la integración con Firebase y las reglas de seguridad;
-  - probar la app en un navegador y corregir los errores encontrados;
-  - guiarme en la configuración de Firebase, GitHub y Vercel;
-  - implementar las mejoras de las versiones 2 y 3;
-  - grabar la demostración y redactar la documentación.
+**Claude (Anthropic), mediante Claude Code**, en la aplicación de escritorio. La usé como herramienta de apoyo en distintas etapas, siempre partiendo de mi propuesta:
+- **Código:** me ayudó a llevar la propuesta a código con React + Vite (componentes, estilos y la conexión con Firebase y sus reglas).
+- **Configuración:** me acompañó paso a paso para instalar Node.js, configurar Firebase, subir el repositorio a GitHub y publicar en Vercel.
+- **Errores:** me ayudó a interpretar y resolver los problemas que fueron apareciendo.
+- **Iteraciones:** sobre la base funcional, definimos e implementamos las mejoras de las versiones 2 y 3.
+- **Demostración y documentación:** me ayudó a grabar las imágenes del video y a organizar el README, este informe y la bitácora.
 
-**Lo que definí yo:**
-- el concepto, el nombre y la tagline;
-- el público y las funcionalidades;
-- la estética *Luxury Editorial* (paleta, tipografías, referencias de *Vogue* y *The Row*);
-- la estructura de la Home en cinco secciones;
-- el plan de tres versiones.
-
-También revisé y probé cada versión publicada. Los pasos que requerían mis cuentas (iniciar sesión, aceptar términos, autorizar permisos, códigos de verificación) los hice yo.
+**Mi parte del trabajo:**
+- Definí el concepto, el nombre, la tagline, el público y las funcionalidades.
+- Definí la estética *Luxury Editorial* (paleta, tipografías y referencias de *Vogue* y *The Row*), la estructura de la Home en cinco secciones y el plan de tres versiones.
+- Hice los pasos que dependían de mis cuentas: crear las cuentas, iniciar sesión, autorizar permisos y verificar mi identidad.
+- Probé la aplicación publicada, también desde el celular, cargando mis propias prendas.
+- Grabé la narración del video.
 
 ## 5. Ejemplos representativos de instrucciones dadas a la IA
 
