@@ -5,6 +5,10 @@
 
 **🔗 App publicada:** https://wishlist-two-khaki.vercel.app
 
+> **Primera visita:** cada navegador es un usuario anónimo distinto, así que la app arranca vacía. Tocá **"Cargar prendas de ejemplo"** para ver la colección con 6 prendas, o agregá las tuyas con **+ Add Item**.
+
+![WISHLIST — Home](docs/capturas/v3-home.jpg)
+
 WISHLIST es una aplicación web para **guardar, organizar y gestionar las prendas y accesorios que queremos comprar**. No es un ecommerce: funciona como un archivo personal de deseos, con una estética *Luxury Editorial* inspirada en revistas de moda.
 
 ---
@@ -19,9 +23,10 @@ WISHLIST es una aplicación web para **guardar, organizar y gestionar las prenda
 | Marcar como comprado | Cambia el estado *pendiente ↔ comprado* | **Update** |
 | Eliminar producto | Con confirmación previa | **Delete** |
 | Filtrar y buscar | Por estado (pestañas), categoría, prioridad y texto; orden por fecha, prioridad o precio | — |
-| Resumen de presupuesto | Guardados, pendientes, comprados y total pendiente en ARS | — |
+| Resumen de presupuesto | Guardados, pendientes, comprados (con total invertido) y total pendiente en ARS | — |
+| Prendas de ejemplo | Carga 6 prendas en Firestore cuando la wishlist está vacía | **Create** |
 
-Además: validaciones de formulario, estados de carga (skeletons y spinners), mensajes de éxito/error (toasts), estados vacíos, diseño responsive y accesibilidad básica (teclado, `aria-*`, foco visible, `Escape` cierra modales).
+Además: validaciones de formulario, estados de carga (skeletons y spinners), mensajes de éxito/error (toasts), estados vacíos, diseño responsive y accesibilidad (teclado, `aria-*`, foco visible y atrapado dentro de los modales, `Escape` cierra modales).
 
 ## Estructura de la Home
 
@@ -55,7 +60,7 @@ wishlist/
     │   └── useToasts.js
     ├── services/
     │   ├── wishlistService.js # Firestore (o localStorage en modo demo)
-    │   └── seed.js            # Datos de ejemplo del modo demo
+    │   └── seed.js            # Prendas de ejemplo
     ├── lib/                   # Constantes y formateadores
     └── components/            # Header, Hero, Summary, Collection, ItemCard,
                                # ItemForm, ItemDetail, ConfirmDialog, Modal,
@@ -120,14 +125,16 @@ cp .env.example .env
 
 ## Versiones
 
-| Versión | Contenido |
-| --- | --- |
-| **v1 — Aplicación funcional** | React + Vite, Firebase, grilla, alta/edición/baja/consulta, validaciones básicas |
-| **v2 — Mejoras de experiencia** | Filtros por categoría, pendiente/comprado, confirmaciones, toasts, responsive |
-| **v3 — Diseño final** | Refinamiento editorial, resumen de presupuesto, microinteracciones, documentación, deploy en Vercel |
+Cada versión está marcada con un tag de Git y publicada en Vercel.
 
-Ver [`BITACORA.md`](BITACORA.md) para el registro del proceso y el uso de IA.
+| Versión | Tag | Contenido |
+| --- | --- | --- |
+| **v1 — Aplicación funcional** | [`v1.0`](https://github.com/Martina2003-cod/wishlist/tree/v1.0) | React + Vite, Firebase (Auth anónimo + Firestore), CRUD completo, validaciones, filtros, resumen de presupuesto, diseño editorial, deploy en Vercel |
+| **v2 — Mejoras de experiencia** | [`v2.0`](https://github.com/Martina2003-cod/wishlist/tree/v2.0) | Botón "Cargar prendas de ejemplo" y total invertido en compras |
+| **v3 — Diseño final** | [`v3.0`](https://github.com/Martina2003-cod/wishlist/tree/v3.0) | Paquetes separados (612 KB → 32 KB de código propio), foco atrapado en los modales, metadatos Open Graph |
+
+Ver [`BITACORA.md`](BITACORA.md) para el detalle de cada versión, las capturas, las pruebas y el uso de IA.
 
 ## Autoría
 
-Proyecto académico — Desarrollo Frontend II. Imágenes de ejemplo: Unsplash.
+Proyecto académico — Desarrollo Frontend II · [@Martina2003-cod](https://github.com/Martina2003-cod). Desarrollado con asistencia de IA (Claude), ver [`BITACORA.md`](BITACORA.md). Imágenes de ejemplo: Unsplash.
