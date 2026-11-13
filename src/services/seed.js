@@ -32,7 +32,7 @@ export const SEED_ITEMS = [
   },
   {
     id: 'seed-3',
-    name: 'Cartera Tote Camel',
+    name: 'Cartera de cuero roja',
     brand: 'Prüne',
     price: 245000,
     category: 'Carteras',

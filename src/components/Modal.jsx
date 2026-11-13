@@ -8,7 +8,26 @@ export default function Modal({ open, onClose, labelledBy, size = 'md', children
   useEffect(() => {
     if (!open) return;
     const previousFocus = document.activeElement;
-    const onKey = (e) => e.key === 'Escape' && closeRef.current();
+    const onKey = (e) => {
+      if (e.key === 'Escape') return closeRef.current();
+      if (e.key !== 'Tab' || !ref.current) return;
+      // Mantiene el foco del teclado dentro del modal (accesibilidad).
+      const focusables = [
+        ...ref.current.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea, [tabindex]:not([tabindex="-1"])'
+        ),
+      ];
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === ref.current)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     document.addEventListener('keydown', onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
