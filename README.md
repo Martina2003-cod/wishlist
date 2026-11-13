@@ -3,6 +3,8 @@
 > **Save it. Style it. Make it yours.**
 > Desarrollo Frontend II · TP2
 
+**🔗 App publicada:** https://wishlist-two-khaki.vercel.app
+
 WISHLIST es una aplicación web para **guardar, organizar y gestionar las prendas y accesorios que queremos comprar**. No es un ecommerce: funciona como un archivo personal de deseos, con una estética *Luxury Editorial* inspirada en revistas de moda.
 
 ---
